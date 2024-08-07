@@ -1,6 +1,8 @@
 const express = require("express")
 const cors = require('cors')
 const connectDB = require("./src/configs/connectDB")
+const authRouter = require("./src/routers/authRouter")
+const errorMiddleHandle = require("./src/middlewares/errorMiddleWare")
 
 const app = express()
 app.use(cors())
