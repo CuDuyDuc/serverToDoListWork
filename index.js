@@ -3,6 +3,7 @@ const cors = require('cors')
 const connectDB = require("./src/configs/connectDB")
 const authRouter = require("./src/routers/authRouter")
 const errorMiddleHandle = require("./src/middlewares/errorMiddleWare")
+const WorkRouter = require("./src/routers/workRouter")
 
 const app = express()
 app.use(cors())
@@ -10,7 +11,7 @@ require('dotenv').config
 app.use(express.json());
 const PORT = 3000
 app.use('/auth' , authRouter);
-
+app.use('/work', WorkRouter);
 app.use(errorMiddleHandle);
 connectDB()
 
