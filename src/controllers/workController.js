@@ -42,4 +42,26 @@ const updateSuccess = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports={addWork,getWorkByUserId, updateSuccess}
+const deleteWork = asyncHandler(async (req, res) => {
+  const { id_work } = req.params;
+  try {
+    const result = await WorkModel.findByIdAndDelete(id_work);
+    if (result) {
+      res.status(200).json({
+        message: "xóa thành công",
+      });
+    } else {
+      res.status(404).json({
+        message: "Không tìm thấy công việc",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Có lỗi xảy ra",
+      error,
+    });
+  }
+});
+
+module.exports={addWork,getWorkByUserId, updateSuccess, deleteWork}
