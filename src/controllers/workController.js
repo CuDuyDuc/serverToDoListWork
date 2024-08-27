@@ -53,11 +53,7 @@ const updateWork = asyncHandler(async (req, res) => {
       });
     }
 
-    const updatedWork = await WorkModel.findByIdAndUpdate(
-      id_work,
-      { name, description },
-      { new: true }
-    );
+    const updatedWork = await WorkModel.findByIdAndUpdate(id_work,{ name, description },{ new: true });
 
     res.status(200).json({
       message: "Update work success",
