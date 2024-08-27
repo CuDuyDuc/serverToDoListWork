@@ -38,6 +38,7 @@ const updateSuccess = asyncHandler(async (req, res) => {
   if (result) {
     res.status(200).json({
       message: "sửa thành công",
+      data:result
     });
   }
 });
