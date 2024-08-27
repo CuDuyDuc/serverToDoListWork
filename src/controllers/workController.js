@@ -90,4 +90,18 @@ const deleteWork = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports={addWork,getWorkByUserId, updateSuccess, updateWork, deleteWork}
+const getSuccessWork = asyncHandler(async(req, res) => {
+  const {id_user} = req.params;
+  try {
+    const result = await WorkModel.find({id_user:id_user,success:true})
+    if(result) {
+      res.status(200).json({
+        data:result
+      })
+    }
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+module.exports={addWork,getWorkByUserId, updateSuccess, updateWork, deleteWork, getSuccessWork}
