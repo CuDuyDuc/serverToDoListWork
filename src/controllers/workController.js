@@ -42,6 +42,36 @@ const updateSuccess = asyncHandler(async (req, res) => {
   }
 });
 
+const updateWork = asyncHandler(async (req, res) => {
+  const {id_work} = req.params;
+  const {name, description} = req.body;
+  try {
+    const workExists = await WorkModel.findById(id_work);
+    if (!workExists) {
+      return res.status(404).json({
+        message: "Work not found",
+      });
+    }
+
+    const updatedWork = await WorkModel.findByIdAndUpdate(
+      id_work,
+      { name, description },
+      { new: true }
+    );
+
+    res.status(200).json({
+      message: "Update work success",
+      work: updatedWork,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Update failed",
+      error,
+    });
+  }
+});
+
 const deleteWork = asyncHandler(async (req, res) => {
   const { id_work } = req.params;
   try {
@@ -64,4 +94,4 @@ const deleteWork = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports={addWork,getWorkByUserId, updateSuccess, deleteWork}
+module.exports={addWork,getWorkByUserId, updateSuccess, updateWork, deleteWork}
