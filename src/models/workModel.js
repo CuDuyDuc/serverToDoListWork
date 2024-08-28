@@ -15,6 +15,10 @@ const WorkSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
+    id_priority:{
+        type:Schema.Types.ObjectId,
+        ref:'priority'
+    },
     date_work:{
         type:Date,
         default:Date.now()
