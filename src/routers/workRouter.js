@@ -1,5 +1,5 @@
 const Router = require('express')
-const { addWork, getWorkByUserId, updateSuccess, deleteWork, updateWork, getSuccessWork } = require('../controllers/workController')
+const { addWork, getWorkByUserId, updateSuccess, deleteWork, updateWork, getSuccessWork, getWorkPriorityByIdUser } = require('../controllers/workController')
 
 const WorkRouter = Router()
 WorkRouter.post('/add-work',addWork)
